@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Practice6</string>
+    <string name="book_name1">Дж. К. Роулинг\nГарри Поттер и Философский камень</string>
+    <string name="book_name2">Дж. К. Роулинг\nГарри Поттер и Тайная комната</string>
+    <string name="read_books_list">Ваши прочитанные книги:</string>
+    <string name="preferences">Предпочтения в книгах</string>
+    <string name="fio">Иван Иванов</string>
+    <string name="number">#1234-5678-90</string>
+    <string name="header1">Ваш читательский билет</string>
+    <string name="book_page_rating">Оценить книгу</string>
+    <string name="download_ebook">Скачать электронную версию</string>
+    <string name="book1_author">Дж. К. Роулинг</string>
+    <string name="book1_name">Гарри Поттер и философский камень</string>
+    <string name="book2_name">Гарри Поттер и Тайная комната</string>
+    <string name="age">17 лет</string>
+    <string name="book_a_book">Забронировать в библиотеке</string>
+    <string name="rating_text">Оценка:</string>
+    <string name="description_book1">\tОдиннадцатилетний мальчик-сирота Гарри Поттер живет в
+        семье своей тетки и даже не подозревает, что он — настоящий волшебник. Но однажды прилетает
+        сова с письмом для него, и жизнь Гарри Поттера изменяется навсегда.</string>
+    <string name="description_book2">\tХогвартсу угрожает опасность проклятия Тайной комнаты, которая по слухам снова открыта. Эта новость шокирует и всех учителей, и тем более всех учеников волшебного мира. Поттеру придется применить все свои магические знания, чтобы справиться с могучим противником в мифической Тайной комнате.</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>
