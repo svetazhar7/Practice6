@@ -19,7 +19,6 @@
         семье своей тетки и даже не подозревает, что он — настоящий волшебник. Но однажды прилетает
         сова с письмом для него, и жизнь Гарри Поттера изменяется навсегда.</string>
     <string name="description_book2">\tХогвартсу угрожает опасность проклятия Тайной комнаты, которая по слухам снова открыта. Эта новость шокирует и всех учителей, и тем более всех учеников волшебного мира. Поттеру придется применить все свои магические знания, чтобы справиться с могучим противником в мифической Тайной комнате.</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="notification_title">Библиотека</string>
+    <string name="notification_text">Вам пришло уведомление!</string>
 </resources>
