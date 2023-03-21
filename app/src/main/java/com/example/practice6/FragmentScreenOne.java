@@ -112,7 +112,19 @@ public class FragmentScreenOne extends Fragment {
 
 
         });
-
+        binding.button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(getContext())) {
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                            Uri.parse("package:" + getActivity().getPackageName()));
+                    startActivity(intent);
+                } else {
+                    // Permission granted, start the service
+                    Intent intent = new Intent(getActivity(), ServiceClass.class);
+                    getActivity().startService(intent);
+                }
+            }
+        });
     }
-
 }

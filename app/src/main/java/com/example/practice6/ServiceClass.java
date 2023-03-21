@@ -33,31 +33,16 @@ public class ServiceClass extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        // Create the banner view from the layout file
         bannerView = LayoutInflater.from(this).inflate(R.layout.service_layout, null);
-
-        // Add a click listener to the button to navigate to the running application
         Button bannerButton = bannerView.findViewById(R.id.button5);
         bannerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Launch the running application
                 Intent launchIntent = getPackageManager().getLaunchIntentForPackage(getPackageName());
                 startActivity(launchIntent);
             }
         });
-
-        /* Add the banner view to the window manager as a hardware overlay
-        WindowManager.LayoutParams params = new WindowManager.LayoutParams(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.WRAP_CONTENT,
-                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
-                PixelFormat.TRANSLUCENT);
-        windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
-        windowManager.addView(bannerView, params);*/
-
-        final WindowManager.LayoutParams params = new
+                final WindowManager.LayoutParams params = new
                 WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -72,7 +57,7 @@ public class ServiceClass extends Service {
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stopSelf(); // stop the service and close the overlay
+                stopSelf();
             }
         });
 
