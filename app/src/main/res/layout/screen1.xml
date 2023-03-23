@@ -94,21 +94,6 @@
             android:textColor="#5C5C5C"
             android:textSize="16sp" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_below="@+id/textView11"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_toEndOf="@+id/imageView4"
-            android:backgroundTint="#CF808C"
-            android:fontFamily="@font/playfair_display_black"
-            android:text="Открыть в окне"
-            android:textSize="12sp" />
-
     </RelativeLayout>
 
     <TextView

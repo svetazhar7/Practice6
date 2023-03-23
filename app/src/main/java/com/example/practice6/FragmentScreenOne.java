@@ -3,8 +3,10 @@ package com.example.practice6;
 
 import static androidx.core.content.ContextCompat.getSystemService;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -14,6 +16,7 @@ import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,9 +31,9 @@ import com.example.practice6.databinding.Screen1Binding;
 
 public class FragmentScreenOne extends Fragment {
     Screen1Binding binding;
-    float rating_book1;
-    float rating_book2;
+
     private static final String CHANNEL_ID = "my_channel";
+    private static final int PERMISSION_REQUEST_CODE = 1;
     private static final int NOTIFICATION_ID = 1;
 
     public FragmentScreenOne() {
@@ -48,55 +51,32 @@ public class FragmentScreenOne extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            if (bundle.containsKey("rating2")) {
-                rating_book1 = bundle.getFloat("rating2");
-                binding.button4.setText("Вы оценили книгу на " + rating_book1);
-            } else {
-                rating_book2 = bundle.getFloat("rating3");
-                binding.button6.setText("Вы оценили книгу на " + rating_book2);
-            }
-
+        // Создаем канал уведомлений (для Android 8.0 и выше)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Мой канал";
+            String description = "Канал для уведомлений";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = requireContext().
+                    getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
         }
+        //Реакция на уведомления
+        Intent notificationIntent = new Intent(getActivity(), MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getActivity(),
+                0, notificationIntent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
 
-        binding.button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view)
-                        .navigate(R.id.action_first_fragment_to_second_fragment);
-            }
-        });
-        binding.button6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view)
-                        .navigate(R.id.action_first_fragment_to_third_fragment);
-            }
-        });
         binding.imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                // Проверяем, есть ли разрешение на отправку уведомлений
-                if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.
+                // Есть ли разрешения на отправку уведомления
+                if (ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.
                         POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                     // Если разрешение не получено, запрашиваем его у пользователя
-                    ActivityCompat.requestPermissions(requireActivity(),
-                            new String[]{android.Manifest.permission.POST_NOTIFICATIONS},
-                            1);
-                    return;
-                }
-                // Создаем канал уведомлений (для Android 8.0 и выше)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    CharSequence name = "Мой канал";
-                    String description = "Канал для уведомлений";
-                    int importance = NotificationManager.IMPORTANCE_DEFAULT;
-                    NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-                    channel.setDescription(description);
-                    NotificationManager notificationManager = requireContext().
-                            getSystemService(NotificationManager.class);
-                    notificationManager.createNotificationChannel(channel);
+                    requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1);
                 }
                 // Создаем уведомление
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(requireContext(),
@@ -112,7 +92,24 @@ public class FragmentScreenOne extends Fragment {
 
 
         });
-        binding.button2.setOnClickListener(new View.OnClickListener() {
+/*
+        binding.imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Проверяем, есть ли разрешение на отправку уведомлений
+                if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.
+                        POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                    // Если разрешение не получено, запрашиваем его у пользователя
+                    ActivityCompat.requestPermissions(requireActivity(),
+                            new String[]{android.Manifest.permission.POST_NOTIFICATIONS},
+                            PERMISSION_REQUEST_CODE);
+                    return;
+                } else {
+                    sendNotification();
+                }
+            }
+        });*/
+        /*binding.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(getContext())) {
@@ -125,6 +122,17 @@ public class FragmentScreenOne extends Fragment {
                     getActivity().startService(intent);
                 }
             }
-        });
+        });*/
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (requestCode == 1 && grantResults.length == 1) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            }
+        }
+        super.onRequestPermissionsResult(
+                requestCode, permissions, grantResults
+        );
     }
 }
