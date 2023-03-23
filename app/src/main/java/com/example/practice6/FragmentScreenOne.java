@@ -62,11 +62,11 @@ public class FragmentScreenOne extends Fragment {
                     getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
-        //Реакция на уведомления
-        Intent notificationIntent = new Intent(getActivity(), MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getActivity(),
-                0, notificationIntent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
+
+        // Создаем intent, который будет запускать наше приложение при нажатии на уведомление
+        Intent intent = new Intent(requireContext(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(requireContext(), 0, intent, 0);
 
         binding.imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,9 +81,11 @@ public class FragmentScreenOne extends Fragment {
                 // Создаем уведомление
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(requireContext(),
                         CHANNEL_ID)
-                        .setSmallIcon(R.drawable.bell)
-                        .setContentTitle("Библиотека")
-                        .setContentText("Вам пришло уведомление из библиотеки!")
+                        .setSmallIcon(R.drawable.bell) //маленькая иконка
+                        .setContentTitle("Библиотека") //заголовок
+                        .setContentText("Вам пришло уведомление из библиотеки!") //текст уведомления
+                        .setAutoCancel(true) // автоматически закрывает уведомление после нажатия
+                        .setContentIntent(pendingIntent)// добавляем PendingIntent
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                 // Отправляем уведомление
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(requireContext());
@@ -92,24 +94,7 @@ public class FragmentScreenOne extends Fragment {
 
 
         });
-/*
-        binding.imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Проверяем, есть ли разрешение на отправку уведомлений
-                if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.
-                        POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-                    // Если разрешение не получено, запрашиваем его у пользователя
-                    ActivityCompat.requestPermissions(requireActivity(),
-                            new String[]{android.Manifest.permission.POST_NOTIFICATIONS},
-                            PERMISSION_REQUEST_CODE);
-                    return;
-                } else {
-                    sendNotification();
-                }
-            }
-        });*/
-        /*binding.button2.setOnClickListener(new View.OnClickListener() {
+        binding.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(getContext())) {
@@ -122,7 +107,7 @@ public class FragmentScreenOne extends Fragment {
                     getActivity().startService(intent);
                 }
             }
-        });*/
+        });
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
