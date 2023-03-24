@@ -39,14 +39,12 @@ public class ServiceClass extends Service {
         // Создание PendingIntent'a для перехода в приложение
         Intent intent= new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-        bannerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    pendingIntent.send();
-                } catch (PendingIntent.CanceledException e) {//если попытка отправки отмененного PendingIntent'a
-                    e.printStackTrace();
-                }
+        bannerView.setOnClickListener(v -> {
+            try {
+                pendingIntent.send();
+                stopSelf();
+            } catch (PendingIntent.CanceledException e) {
+                e.printStackTrace();
             }
         });
         // Создание и настройка всплывающего окна, которое будет отображаться поверх других приложений
@@ -66,19 +64,13 @@ public class ServiceClass extends Service {
         windowManager.updateViewLayout(bannerView, params);
         // Настройка кнопки закрытия всплывающего окна
         ImageButton closeButton = bannerView.findViewById(R.id.imageButton);
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Закрытие сервиса при нажатии на кнопку
-                stopSelf();
-            }
-        });
+
     }
     // Остановка сервиса и удаление всплывающего окна при уничтожении сервиса
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (windowManager != null && bannerView != null) {
+        if (windowManager != null) {
             windowManager.removeView(bannerView);
         }
     }
