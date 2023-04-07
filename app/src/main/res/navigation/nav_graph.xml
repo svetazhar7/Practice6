@@ -3,36 +3,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/first_fragment">
+    app:startDestination="@id/profile_fragment">
 
-    <fragment android:id="@+id/first_fragment"
-        android:name="com.example.practice6.FragmentScreenOne"
+    <fragment android:id="@+id/profile_fragment"
+        android:name="com.example.practice6.ui.ProfileFragment"
         android:label="Screen One"
         tools:layout ="@layout/screen1">
         <action
-            android:id="@+id/action_first_fragment_to_third_fragment"
-            app:destination="@id/third_fragment" />
+            android:id="@+id/action_profile_fragment_to_second_book__fragment"
+            app:destination="@id/second_book__fragment" />
         <action
-            android:id="@+id/action_first_fragment_to_second_fragment"
-            app:destination="@id/second_fragment" />
+            android:id="@+id/action_profile_fragment_to_first_book_fragment"
+            app:destination="@id/first_book_fragment" />
+        <action
+            android:id="@+id/action_profile_fragment_to_book_list_fragment"
+            app:destination="@id/book_list_fragment" />
     </fragment>
 
-    <fragment android:id="@+id/second_fragment"
-        android:name="com.example.practice6.FragmentScreenTwo"
+    <fragment android:id="@+id/first_book_fragment"
+        android:name="com.example.practice6.ui.FirstBookFragment"
         android:label="Screen Two"
         tools:layout ="@layout/screen2">
         <action
-            android:id="@+id/action_second_fragment_to_first_fragment"
-            app:destination="@id/first_fragment" />
+            android:id="@+id/action_first_book_fragment_to_profile_fragment"
+            app:destination="@id/profile_fragment" />
     </fragment>
 
-    <fragment android:id="@+id/third_fragment"
-        android:name="com.example.practice6.FragmentScreenThree"
+    <fragment android:id="@+id/second_book__fragment"
+        android:name="com.example.practice6.ui.SecondBookFragment"
         android:label="Screen Three"
         tools:layout ="@layout/screen3">
         <action
-            android:id="@+id/action_third_fragment_to_first_fragment"
-            app:destination="@id/first_fragment" />
+            android:id="@+id/action_second_book__fragment_to_profile_fragment"
+            app:destination="@id/profile_fragment" />
+
+
+    </fragment>
+
+    <fragment android:id="@+id/book_list_fragment"
+        android:name="com.example.practice6.ui.BookListFragment"
+        android:label="Screen Four"
+        tools:layout ="@layout/book_list" >
     </fragment>
 </navigation>
 

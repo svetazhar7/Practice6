@@ -7,6 +7,7 @@
     <string name="fio">Иван Иванов</string>
     <string name="number">#1234-5678-90</string>
     <string name="header1">Ваш читательский билет</string>
+    <string name="header2">ЧИТАТЕЛЬСКИЙ БИЛЕТ</string>
     <string name="book_page_rating">Оценить книгу</string>
     <string name="download_ebook">Скачать электронную версию</string>
     <string name="book1_author">Дж. К. Роулинг</string>
@@ -22,4 +23,5 @@
     <string name="notification_title">Библиотека</string>
     <string name="notification_text">Вам пришло уведомление!</string>
     <string name="open_in_window">Открыть в окне</string>
+    <string name="books">Доступные книги</string>
 </resources>

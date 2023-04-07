@@ -10,10 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
+
+import com.example.practice6.R;
+import com.example.practice6.MainActivity;
 
 public class ServiceClass extends Service {
 
@@ -35,15 +36,16 @@ public class ServiceClass extends Service {
     public void onCreate() {
         super.onCreate();
         bannerView = LayoutInflater.from(this).inflate(R.layout.service_layout, null);
-        Button bannerButton = bannerView.findViewById(R.id.button5);
         // Создание PendingIntent'a для перехода в приложение
         Intent intent= new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        //  перехода в запущенное приложение при клике на баннер запущенного сервиса
         bannerView.setOnClickListener(v -> {
             try {
-                pendingIntent.send();
-                stopSelf();
-            } catch (PendingIntent.CanceledException e) {
+                pendingIntent.send();//запуск приложения
+                stopSelf();//остановка сервиса
+            } catch (PendingIntent.CanceledException e) {//Если PendingIntent не удалось выполнить,
+                //то выбрасываем исключение
                 e.printStackTrace();
             }
         });
@@ -62,8 +64,6 @@ public class ServiceClass extends Service {
         params.gravity = Gravity.CENTER;
         // Обновление параметров окна
         windowManager.updateViewLayout(bannerView, params);
-        // Настройка кнопки закрытия всплывающего окна
-        ImageButton closeButton = bannerView.findViewById(R.id.imageButton);
 
     }
     // Остановка сервиса и удаление всплывающего окна при уничтожении сервиса

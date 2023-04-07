@@ -1,4 +1,4 @@
-package com.example.practice6;
+package com.example.practice6.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,19 +11,21 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import com.example.practice6.databinding.Screen3Binding;
+import com.example.practice6.R;
+import com.example.practice6.databinding.ActivityMainBinding;
+import com.example.practice6.databinding.Screen2Binding;
 
-public class FragmentScreenThree extends Fragment {
-    Screen3Binding binding;
-    public FragmentScreenThree()
+public class FirstBookFragment extends Fragment {
+    Screen2Binding binding;
+    public FirstBookFragment()
     {
-        super(R.layout.screen3);
+        super(R.layout.screen2);
     }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        binding = Screen3Binding.inflate(inflater, container, false);
+        binding = Screen2Binding.inflate(inflater, container, false);
         return binding.getRoot();
     }
     @Override
@@ -33,12 +35,10 @@ public class FragmentScreenThree extends Fragment {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
                 Bundle bundle = new Bundle();
-                bundle.putFloat("rating3",  binding.ratingBar.getRating());
+                bundle.putFloat("rating2",  binding.ratingBar.getRating());
                 Navigation.findNavController(view)
-                        .navigate(R.id.action_third_fragment_to_first_fragment,bundle);
+                        .navigate(R.id.action_first_book_fragment_to_profile_fragment,bundle);
             }
         });
-
     }
 }
-

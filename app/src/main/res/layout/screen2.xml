@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/harry_potter" />
+        app:srcCompat="@drawable/book_cover1" />
     <Button
         android:id="@+id/button3"
         android:layout_width="0dp"

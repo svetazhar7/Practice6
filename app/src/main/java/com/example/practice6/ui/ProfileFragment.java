@@ -1,9 +1,6 @@
-package com.example.practice6;
+package com.example.practice6.ui;
 
 
-import static androidx.core.content.ContextCompat.getSystemService;
-
-import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -16,11 +13,9 @@ import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
@@ -28,15 +23,19 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.practice6.databinding.Screen1Binding;
+import com.example.practice6.MainActivity;
+import com.example.practice6.R;
+import com.example.practice6.ServiceClass;
 
-public class FragmentScreenOne extends Fragment {
+public class ProfileFragment extends Fragment {
     Screen1Binding binding;
-
+    float rating_book1;
+    float rating_book2;
     private static final String CHANNEL_ID = "my_channel";
     private static final int PERMISSION_REQUEST_CODE = 1;
     private static final int NOTIFICATION_ID = 1;
 
-    public FragmentScreenOne() {
+    public ProfileFragment() {
         super(R.layout.screen1);
     }
 
@@ -51,6 +50,38 @@ public class FragmentScreenOne extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            if (bundle.containsKey("rating2"))
+            {
+                rating_book1 = bundle.getFloat("rating2");
+                binding.button4.setText("Вы оценили книгу на "+rating_book1);
+            }
+            else
+            {
+                rating_book2 = bundle.getFloat("rating3");
+                binding.button6.setText("Вы оценили книгу на "+rating_book2);
+            }
+
+        }
+        binding.button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_profile_fragment_to_first_book_fragment);
+            }
+        });
+        binding.button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_profile_fragment_to_second_book__fragment);
+            }
+        });
+        binding.imageButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_profile_fragment_to_book_list_fragment);
+            }
+        });
         // Создаем канал уведомлений (для Android 8.0 и выше)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "Мой канал";
