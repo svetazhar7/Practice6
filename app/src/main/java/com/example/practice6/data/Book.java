@@ -10,7 +10,7 @@ public class Book {
     public Book(int image, String name, String author) {
         this.image = image;
         this.name = name;
-        this.author= author;
+        this.author = author;
     }
 
     public String getAuthor() {
@@ -36,38 +36,5 @@ public class Book {
     public void setName(String name) {
         this.name = name;
     }
-/*
-    String image;
-    String name;
-    String author;
-
-    public Book(String name, String author, String image) {
-        this.image = image;
-        this.name = name;
-        this.author = author;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public void setName(String name) {
-
-    }*/
 }
+

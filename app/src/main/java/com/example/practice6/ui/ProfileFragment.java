@@ -50,33 +50,13 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            if (bundle.containsKey("rating2"))
-            {
-                rating_book1 = bundle.getFloat("rating2");
-                binding.button4.setText("Вы оценили книгу на "+rating_book1);
-            }
-            else
-            {
-                rating_book2 = bundle.getFloat("rating3");
-                binding.button6.setText("Вы оценили книгу на "+rating_book2);
-            }
-
-        }
-        binding.button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_profile_fragment_to_first_book_fragment);
-            }
-        });
         binding.button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_profile_fragment_to_second_book__fragment);
+                Navigation.findNavController(view).navigate(R.id.action_profile_fragment_to_author_list_fragment);
             }
         });
-        binding.imageButton2.setOnClickListener(new View.OnClickListener() {
+        binding.button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.action_profile_fragment_to_book_list_fragment);

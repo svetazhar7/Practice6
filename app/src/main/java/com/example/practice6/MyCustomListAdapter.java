@@ -1,7 +1,9 @@
 package com.example.practice6;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,18 +11,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.practice6.data.Book;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyCustomListAdapter extends RecyclerView.Adapter<MyCustomListAdapter.MyViewHolder> {
 
-    private ArrayList<Book> books;
-
-    public MyCustomListAdapter(ArrayList<Book> books) {
-        this.books = books;
+    private List<Book> books;
+    public MyCustomListAdapter() {
+        this.books =  new ArrayList<>();
     }
 
     @NonNull
@@ -37,6 +40,16 @@ public class MyCustomListAdapter extends RecyclerView.Adapter<MyCustomListAdapte
         holder.name.setText(book.getName());
         holder.author.setText(book.getAuthor());
         holder.imageView.setImageResource(book.getImage());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("Name", book.getName());
+                bundle.putString("Author", book.getAuthor());
+                bundle.putInt("Image", book.getImage());
+                Navigation.findNavController(view).navigate(R.id.action_book_list_fragment_to_single_book_fragment, bundle);
+            }
+        });
 
     }
 
@@ -55,15 +68,12 @@ public class MyCustomListAdapter extends RecyclerView.Adapter<MyCustomListAdapte
             author = itemView.findViewById(R.id.item_author);
             imageView = itemView.findViewById(R.id.item_image);
             name = itemView.findViewById(R.id.item_name);
-          /* itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(view.getContext(), "Нажатие на: " + textView .getText(), Toast.LENGTH_SHORT).show();
-                    Log.i("FragmentScreenThree", "Нажатие на: " + textView .getText());
-
-                }
-            });*/
         }
+    }
+    public void updateBooks(List<Book> books) {
+        this.books.clear();
+        this.books = books;
+        notifyDataSetChanged();
     }
 }
 
