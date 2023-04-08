@@ -1,9 +1,11 @@
-package com.example.practice6.data;
+package com.example.practice6.data.datasources;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.practice6.R;
+import com.example.practice6.data.models.Book;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,7 @@ public class BookDataSource {
         bookList.add(new Book(R.drawable.book_cover5,"Гарри Поттер и Орден Феникса","Дж. К. Роулинг"));
         bookList.add(new Book(R.drawable.book_cover6,"Гарри Поттер и Принц-полукровка","Дж. К. Роулинг"));
         bookList.add(new Book(R.drawable.book_cover7,"Гарри Поттер и Дары Смерти","Дж. К. Роулинг"));
+        bookList.add(new Book(R.drawable.book_cover8,"Голодные игры","С. Коллинз"));
         MutableLiveData<List<Book>> list = new MutableLiveData<>();
         list.setValue(bookList);
         return list;

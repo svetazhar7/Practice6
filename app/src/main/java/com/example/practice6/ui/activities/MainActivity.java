@@ -1,9 +1,12 @@
-package com.example.practice6;
+package com.example.practice6.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.practice6.R;
+import com.example.practice6.ServiceClass;
 
 public class MainActivity extends AppCompatActivity {
 

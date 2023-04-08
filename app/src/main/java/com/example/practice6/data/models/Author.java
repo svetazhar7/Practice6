@@ -1,4 +1,4 @@
-package com.example.practice6.data;
+package com.example.practice6.data.models;
 
 public class Author {
     String name;

@@ -1,4 +1,4 @@
-package com.example.practice6.ui;
+package com.example.practice6.ui.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,11 +14,11 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.practice6.MyCustomAuthorListAdapter;
+import com.example.practice6.ui.adapters.MyCustomAuthorListAdapter;
 import com.example.practice6.R;
 
 import com.example.practice6.databinding.AuthorListBinding;
-import com.example.practice6.viewmodels.AuthorListViewModel;
+import com.example.practice6.ui.viewmodels.AuthorListViewModel;
 
 public class AuthorsListFragment extends Fragment{
 

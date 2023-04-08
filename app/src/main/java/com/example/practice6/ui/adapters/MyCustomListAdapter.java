@@ -1,8 +1,5 @@
-package com.example.practice6;
+package com.example.practice6.ui.adapters;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.practice6.data.Book;
+import com.example.practice6.R;
+import com.example.practice6.data.models.Book;
 
 import java.util.ArrayList;
 import java.util.List;

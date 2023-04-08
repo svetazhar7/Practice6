@@ -1,4 +1,4 @@
-package com.example.practice6.ui;
+package com.example.practice6.ui.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,20 +9,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.practice6.MyCustomListAdapter;
+import com.example.practice6.ui.adapters.MyCustomListAdapter;
 import com.example.practice6.R;
-import com.example.practice6.data.Book;
 import com.example.practice6.databinding.BookListBinding;
-import com.example.practice6.viewmodels.BookListViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.practice6.ui.viewmodels.BookListViewModel;
 
 public class BookListFragment extends Fragment {
     RecyclerView recyclerView;

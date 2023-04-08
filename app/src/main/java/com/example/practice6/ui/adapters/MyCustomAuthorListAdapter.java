@@ -1,18 +1,17 @@
-package com.example.practice6;
+package com.example.practice6.ui.adapters;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.practice6.data.Author;
-import com.example.practice6.data.Book;
+import com.example.practice6.R;
+import com.example.practice6.data.models.Author;
 
 import java.util.ArrayList;
 import java.util.List;

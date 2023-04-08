@@ -1,4 +1,4 @@
-package com.example.practice6.ui;
+package com.example.practice6.ui.fragments;
 
 
 import android.app.NotificationChannel;
@@ -23,7 +23,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.practice6.databinding.Screen1Binding;
-import com.example.practice6.MainActivity;
+import com.example.practice6.ui.activities.MainActivity;
 import com.example.practice6.R;
 import com.example.practice6.ServiceClass;
 
