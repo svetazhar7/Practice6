@@ -4,7 +4,7 @@ public class Author {
     String name;
     int photo;
     int description;
-
+    
     public Author(String name, int description, int photo)
     {
         this.name = name;

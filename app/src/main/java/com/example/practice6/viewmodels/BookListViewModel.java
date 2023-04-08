@@ -11,11 +11,9 @@ import java.util.List;
 public class BookListViewModel extends ViewModel {
     public LiveData<List<Book>> books;
 
-    public void init(){
+    public BookListViewModel() {
+
         BookRepository bookRepository = new BookRepository();
         books = bookRepository.getBooksData();
-    }
-    public BookListViewModel() {
-        init();
     }
 }

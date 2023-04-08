@@ -4,15 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/profile_fragment">
-
     <fragment android:id="@+id/profile_fragment"
         android:name="com.example.practice6.ui.ProfileFragment"
         android:label="Screen One"
         tools:layout ="@layout/screen1">
-        <action
-            android:id="@+id/action_profile_fragment_to_second_book__fragment"
-            app:destination="@id/second_book__fragment" />
-
         <action
             android:id="@+id/action_profile_fragment_to_book_list_fragment"
             app:destination="@id/book_list_fragment" />
@@ -20,19 +15,6 @@
             android:id="@+id/action_profile_fragment_to_author_list_fragment"
             app:destination="@id/author_list_fragment" />
     </fragment>
-
-
-    <fragment android:id="@+id/second_book__fragment"
-        android:name="com.example.practice6.ui.SecondBookFragment"
-        android:label="Screen Three"
-        tools:layout ="@layout/screen3">
-        <action
-            android:id="@+id/action_second_book__fragment_to_profile_fragment"
-            app:destination="@id/profile_fragment" />
-
-
-    </fragment>
-
     <fragment android:id="@+id/book_list_fragment"
         android:name="com.example.practice6.ui.BookListFragment"
         android:label="Screen Four"
@@ -40,16 +22,20 @@
         <action
             android:id="@+id/action_book_list_fragment_to_single_book_fragment"
             app:destination="@id/single_book_fragment" />
+        <action
+            android:id="@+id/action_book_list_fragment_to_profile_fragment"
+            app:destination="@id/profile_fragment" />
     </fragment>
-
     <fragment android:id="@+id/author_list_fragment"
         android:name="com.example.practice6.ui.AuthorsListFragment"
         android:label="Screen Five"
         tools:layout ="@layout/author_list" >>
-
         <action
             android:id="@+id/action_author_list_fragment_to_single_author_fragment"
             app:destination="@id/single_author_fragment" />
+        <action
+            android:id="@+id/action_author_list_fragment_to_profile_fragment"
+            app:destination="@id/profile_fragment" />
     </fragment>
     <fragment android:id="@+id/single_book_fragment"
         android:name="com.example.practice6.ui.SingleBookFragment"
@@ -59,12 +45,10 @@
             android:id="@+id/action_single_book_fragment_to_book_list_fragment"
             app:destination="@id/book_list_fragment" />
     </fragment>
-
     <fragment android:id="@+id/single_author_fragment"
         android:name="com.example.practice6.ui.SingleAuthorFragment"
         android:label="Single Author"
         tools:layout ="@layout/author_info" >
-
         <action
             android:id="@+id/action_single_author_fragment_to_author_list_fragment"
             app:destination="@id/author_list_fragment" />

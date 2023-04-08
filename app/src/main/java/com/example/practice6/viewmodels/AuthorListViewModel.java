@@ -13,11 +13,8 @@ import java.util.List;
 public class AuthorListViewModel extends ViewModel {
     public LiveData<List<Author>> authors;
 
-    public void init(){
+    public AuthorListViewModel() {
         AuthorsRepository authorsRepository = new AuthorsRepository();
         authors = authorsRepository.getAuthorsData();
-    }
-    public AuthorListViewModel() {
-        init();
     }
 }

@@ -10,11 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.practice6.MyCustomAuthorListAdapter;
 import com.example.practice6.R;
+
 import com.example.practice6.databinding.AuthorListBinding;
 import com.example.practice6.viewmodels.AuthorListViewModel;
 
@@ -41,9 +43,16 @@ public class AuthorsListFragment extends Fragment{
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
+
+            binding.button8.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Navigation.findNavController(view).navigate(R.id.action_author_list_fragment_to_profile_fragment);
+                }
+            });
             if (getArguments()!=null)
             {
-                Toast.makeText(getContext(), "Вы добавили автора в избранное", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Вы добавили " +getArguments().getString("Favorite")+" в избранное", Toast.LENGTH_SHORT).show();
             }
             recyclerView = view.findViewById(R.id.recyclerView);
             recyclerView.setHasFixedSize(true);
