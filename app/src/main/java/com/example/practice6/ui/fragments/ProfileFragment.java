@@ -69,7 +69,7 @@ public class ProfileFragment extends Fragment {
         createFileAppScecificStorage(fileName,text);
 
         //Запись файла в общем хранилище
-        //createFileExternalStorage(fileName,text);
+        createFileExternalStorage(fileName,text);
 
         binding.button6.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,7 +163,7 @@ public class ProfileFragment extends Fragment {
         }
 
     }
-    /*
+
     void createFileExternalStorage(String fileName, String text) {
         Context context = getContext();
         if (context.getApplicationContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
@@ -182,7 +182,7 @@ public class ProfileFragment extends Fragment {
         else {
             ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},1 );
         }
-    }*/
+    }
 }
 
 
