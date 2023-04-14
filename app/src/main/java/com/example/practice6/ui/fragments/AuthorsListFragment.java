@@ -14,6 +14,8 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.practice6.data.models.Author;
+import com.example.practice6.data.models.Entity.AuthorEntity;
 import com.example.practice6.ui.adapters.MyCustomAuthorListAdapter;
 import com.example.practice6.R;
 
@@ -37,6 +39,16 @@ public class AuthorsListFragment extends Fragment{
                                  @Nullable Bundle savedInstanceState) {
             binding = AuthorListBinding.inflate(inflater, container, false);
             myCustomListAdapter = new MyCustomAuthorListAdapter();// создание адаптера
+            Bundle args = getArguments();
+            if (args != null && args.containsKey("RESULT_OK_NAME") && args.containsKey("RESULT_OK_IMG")) {
+                AuthorEntity author = new AuthorEntity(args.getString("RESULT_OK_NAME"),args.getInt("RESULT_OK_IMG"));
+                authorListViewModel.insert(author);
+            }
+            if (args != null && args.containsKey("Favorite"))
+            {
+                Toast.makeText(getContext(), "Вы добавили " +args.getString("Favorite")+" в избранное", Toast.LENGTH_SHORT).show();
+            }
+            //args.clear();
             return binding.getRoot();
         }
 
@@ -50,15 +62,18 @@ public class AuthorsListFragment extends Fragment{
                     Navigation.findNavController(view).navigate(R.id.action_author_list_fragment_to_profile_fragment);
                 }
             });
-            if (getArguments()!=null)
-            {
-                Toast.makeText(getContext(), "Вы добавили " +getArguments().getString("Favorite")+" в избранное", Toast.LENGTH_SHORT).show();
-            }
+            binding.button9.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Navigation.findNavController(view).navigate(R.id.action_author_list_fragment_to_new_author_fragment);
+                }
+            });
+
             recyclerView = view.findViewById(R.id.recyclerView);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             recyclerView.setAdapter(myCustomListAdapter);// установка адаптера
-            authorListViewModel.authors.observe(getViewLifecycleOwner(), authorList ->
+            authorListViewModel.getAllAuthors().observe(getViewLifecycleOwner(), authorList ->
                     myCustomListAdapter.updateAuthors(authorList));
         }
 }

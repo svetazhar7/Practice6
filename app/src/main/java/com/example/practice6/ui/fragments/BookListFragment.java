@@ -14,6 +14,8 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.practice6.data.models.Entity.AuthorEntity;
+import com.example.practice6.data.models.Entity.BookEntity;
 import com.example.practice6.ui.adapters.MyCustomListAdapter;
 import com.example.practice6.R;
 import com.example.practice6.databinding.BookListBinding;
@@ -35,6 +37,16 @@ public class BookListFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = BookListBinding.inflate(inflater, container, false);
         myCustomListAdapter = new MyCustomListAdapter();// создание адаптера
+        Bundle args = getArguments();
+        if (args != null && args.containsKey("RESULT_OK_NAME") && args.containsKey("RESULT_OK_IMG")&& args.containsKey("RESULT_OK_AUTHOR")) {
+            BookEntity author = new BookEntity(args.getString("RESULT_OK_NAME"),args.getString("RESULT_OK_AUTHOR"),args.getInt("RESULT_OK_IMG"));
+            bookListViewModel.insert(author);
+        }
+        if (args != null && args.containsKey("Rating"))
+        {
+            Toast.makeText(getContext(), "Вы оценили книгу на "+getArguments().getFloat("Rating"), Toast.LENGTH_SHORT).show();
+        }
+
         return binding.getRoot();
     }
 
@@ -47,15 +59,17 @@ public class BookListFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_book_list_fragment_to_profile_fragment);
             }
         });
-        if (getArguments()!=null)
-        {
-            Toast.makeText(getContext(), "Вы оценили книгу на "+getArguments().getFloat("Rating"), Toast.LENGTH_SHORT).show();
-        }
+        binding.button10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_book_list_fragment_to_new_book_fragment);
+            }
+        });
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(myCustomListAdapter);// установка адаптера
-        bookListViewModel.books.observe(getViewLifecycleOwner(), booksList ->
+        bookListViewModel.getAllBooks().observe(getViewLifecycleOwner(), booksList ->
                 myCustomListAdapter.updateBooks(booksList));
     }
 }

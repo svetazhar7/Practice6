@@ -23,10 +23,8 @@ public class SingleAuthorFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         if (getArguments() != null) {
             String name = getArguments().getString("Name");
-            int description = getArguments().getInt("Description");
             int image = getArguments().getInt("Photo");
             binding.textView15.setText(name);
-            binding.textView17.setText(description);
             binding.imageView3.setImageResource(image);
         }
         binding.button5.setOnClickListener(new View.OnClickListener() {

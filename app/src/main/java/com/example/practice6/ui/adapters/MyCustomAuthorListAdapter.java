@@ -40,7 +40,6 @@ public class MyCustomAuthorListAdapter extends RecyclerView.Adapter<MyCustomAuth
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putString("Name",author.getName());
-                bundle.putInt("Description", author.getDescription());
                 bundle.putInt("Photo", author.getPhoto());
                 Navigation.findNavController(view).navigate(R.id.action_author_list_fragment_to_single_author_fragment, bundle);
             }

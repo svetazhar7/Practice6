@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_book_list_fragment_to_profile_fragment"
             app:destination="@id/profile_fragment" />
+        <action
+            android:id="@+id/action_book_list_fragment_to_new_book_fragment"
+            app:destination="@id/new_book_fragment" />
     </fragment>
     <fragment android:id="@+id/author_list_fragment"
         android:name="com.example.practice6.ui.fragments.AuthorsListFragment"
@@ -36,6 +39,9 @@
         <action
             android:id="@+id/action_author_list_fragment_to_profile_fragment"
             app:destination="@id/profile_fragment" />
+        <action
+            android:id="@+id/action_author_list_fragment_to_new_author_fragment"
+            app:destination="@id/new_author_fragment" />
     </fragment>
     <fragment android:id="@+id/single_book_fragment"
         android:name="com.example.practice6.ui.fragments.SingleBookFragment"
@@ -52,6 +58,23 @@
         <action
             android:id="@+id/action_single_author_fragment_to_author_list_fragment"
             app:destination="@id/author_list_fragment" />
+    </fragment>
+    <fragment android:id="@+id/new_author_fragment"
+        android:name="com.example.practice6.ui.fragments.NewAuthorFragment"
+        android:label="New Author"
+        tools:layout ="@layout/new_author_fragment" >
+        <action
+            android:id="@+id/action_new_author_fragment_to_author_list_fragment"
+            app:destination="@id/author_list_fragment" />
+    </fragment>
+    <fragment android:id="@+id/new_book_fragment"
+        android:name="com.example.practice6.ui.fragments.NewBookFragment"
+        android:label="New Book"
+        tools:layout ="@layout/new_book_fragment" >
+
+        <action
+            android:id="@+id/action_new_book_fragment_to_book_list_fragment"
+            app:destination="@id/book_list_fragment" />
     </fragment>
 </navigation>
 
