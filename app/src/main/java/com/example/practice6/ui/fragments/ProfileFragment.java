@@ -1,21 +1,27 @@
 package com.example.practice6.ui.fragments;
 
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
@@ -27,6 +33,11 @@ import com.example.practice6.ui.activities.MainActivity;
 import com.example.practice6.R;
 import com.example.practice6.ServiceClass;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class ProfileFragment extends Fragment {
     Screen1Binding binding;
     float rating_book1;
@@ -34,6 +45,7 @@ public class ProfileFragment extends Fragment {
     private static final String CHANNEL_ID = "my_channel";
     private static final int PERMISSION_REQUEST_CODE = 1;
     private static final int NOTIFICATION_ID = 1;
+
 
     public ProfileFragment() {
         super(R.layout.screen1);
@@ -50,6 +62,15 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        String text  = binding.editText.getText().toString();
+        String fileName = "userName.txt";
+
+        //Запись файла в app-specific storage
+        createFileAppScecificStorage(fileName,text);
+
+        //Запись файла в общем хранилище
+        //createFileExternalStorage(fileName,text);
+
         binding.button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,4 +152,38 @@ public class ProfileFragment extends Fragment {
                 requestCode, permissions, grantResults
         );
     }
+    void createFileAppScecificStorage(String fileName, String text)
+    {
+        Context context = getContext();
+        try (FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE)) {
+            fos.write(text.getBytes());
+           Toast.makeText(context, "Был создан текстовый файл в app-specific storage  " + context.getDataDir().getAbsolutePath()+"/" + fileName, Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    /*
+    void createFileExternalStorage(String fileName, String text) {
+        Context context = getContext();
+        if (context.getApplicationContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            File filePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+            File file = new File(filePath, fileName);
+            FileOutputStream outputStream;
+            try {
+                outputStream = new FileOutputStream(file);
+                outputStream.write(text.getBytes());
+                // Toast.makeText(context, "Был создан текстовый файл в общем хранилище " + filePath + fileName, Toast.LENGTH_SHORT).show();
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},1 );
+        }
+    }*/
 }
+
+
+

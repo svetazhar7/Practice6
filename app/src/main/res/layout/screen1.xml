@@ -43,15 +43,13 @@
             android:layout_marginBottom="16dp"
             app:srcCompat="@drawable/qr_code" />
 
-        <TextView
-            android:id="@+id/textView9"
+        <EditText
+            android:id="@+id/editText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView12"
-            android:layout_alignParentEnd="true"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_toEndOf="@+id/imageView4"
             android:fontFamily="@font/playfair_display_sc_bold"
             android:text="@string/fio"
@@ -81,7 +79,7 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView9"
+            android:layout_below="@+id/editText"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
@@ -106,6 +104,22 @@
             android:fontFamily="@font/playfair_display_black"
             android:text="@string/open_in_window"
             android:textSize="12sp" />
+
+        <ImageButton
+            android:id="@+id/saveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/editText"
+            android:layout_alignBottom="@+id/editText"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@+id/editText"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/save_btn" />
 
 
     </RelativeLayout>
