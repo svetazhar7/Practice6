@@ -28,6 +28,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.example.practice6.data.repository.SharedPreferencesRepository;
 import com.example.practice6.databinding.Screen1Binding;
 import com.example.practice6.ui.activities.MainActivity;
 import com.example.practice6.R;
@@ -40,6 +41,7 @@ import java.io.IOException;
 
 public class ProfileFragment extends Fragment {
     Screen1Binding binding;
+    SharedPreferencesRepository sharedPreferences;
     float rating_book1;
     float rating_book2;
     private static final String CHANNEL_ID = "my_channel";
@@ -56,12 +58,14 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = Screen1Binding.inflate(inflater, container, false);
+        sharedPreferences = new SharedPreferencesRepository(getContext());
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        binding.editText.setText(sharedPreferences.getString("name"));
         String text  = binding.editText.getText().toString();
         String fileName = "userName.txt";
 
@@ -81,6 +85,12 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.action_profile_fragment_to_book_list_fragment);
+            }
+        });
+        binding.saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sharedPreferences.setString("name", binding.editText.getText().toString());
             }
         });
         // Создаем канал уведомлений (для Android 8.0 и выше)
