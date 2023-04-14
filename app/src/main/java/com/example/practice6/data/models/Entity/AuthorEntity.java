@@ -10,7 +10,6 @@ import com.example.practice6.data.models.Author;
 public class AuthorEntity {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    @ColumnInfo(name = "author")
     private String name;
     private int photo;
     public AuthorEntity(@NonNull String name, int photo) {
@@ -41,6 +40,7 @@ public class AuthorEntity {
         return new Author(this.name,this.photo);
     }
 }
+
 
 
 

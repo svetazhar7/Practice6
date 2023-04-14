@@ -24,13 +24,14 @@ public class BookRepository {
         context = applicationContext;
         roomDatabase = BookRoomDatabase.getDatabase(context);
         mBookDao = BookRoomDatabase.getDatabase(context).bookDao();
-        mAllBooks = Transformations.map(mBookDao.getAllBooks(), entities -> entities.stream().map(BookEntity::toBook).collect(Collectors.toList()));
+        mAllBooks = Transformations.map(mBookDao.getAllBooks(), entities -> entities.stream()
+                .map(BookEntity::toBook).collect(Collectors.toList()));
     }
     public LiveData<List<Book>> getAllBooks() {
         return mAllBooks;
     }
 
-    public void createNewBookDao(BookEntity book) {
+    public void insert(BookEntity book) {
         BookRoomDatabase.databaseWriteExecutor.execute(() -> {
             mBookDao.insert(book);
         });

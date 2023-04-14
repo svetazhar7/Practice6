@@ -4,7 +4,6 @@ import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.practice6.data.models.Author;
 import com.example.practice6.data.models.Entity.AuthorEntity;
@@ -26,6 +25,6 @@ public class AuthorListViewModel extends AndroidViewModel {
 
     public LiveData<List<Author>> getAllAuthors() { return mAllAuthors; }
 
-    public void insert(AuthorEntity author) { mRepository.createNewAuthorDao(author); }
+    public void insert(Author author) { mRepository.insert(new AuthorEntity(author.getName(), author.getPhoto())); }
 }
 

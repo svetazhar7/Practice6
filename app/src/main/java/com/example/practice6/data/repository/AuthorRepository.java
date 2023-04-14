@@ -1,9 +1,6 @@
 package com.example.practice6.data.repository;
 
 import android.content.Context;
-import android.os.Looper;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
@@ -27,13 +24,14 @@ public class AuthorRepository {
         context = applicationContext;
         roomDatabase = AuthorRoomDatabase.getDatabase(context);
         mAuthorDao = AuthorRoomDatabase.getDatabase(context).authorDao();
-        mAllAuthors = Transformations.map(mAuthorDao.getAllAuthors(), entities -> entities.stream().map(AuthorEntity::toAuthor).collect(Collectors.toList()));
+        mAllAuthors = Transformations.map(mAuthorDao.getAllAuthors(), entities -> entities.stream()
+                .map(AuthorEntity::toAuthor).collect(Collectors.toList()));
     }
     public LiveData<List<Author>> getAllAuthors() {
         return mAllAuthors;
     }
 
-    public void createNewAuthorDao(AuthorEntity author) {
+    public void insert(AuthorEntity author) {
         AuthorRoomDatabase.databaseWriteExecutor.execute(() -> {
             mAuthorDao.insert(author);
         });

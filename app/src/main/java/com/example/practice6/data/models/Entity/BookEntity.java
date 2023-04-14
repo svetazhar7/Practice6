@@ -10,7 +10,6 @@ import com.example.practice6.data.models.Book;
 public class BookEntity {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    @ColumnInfo(name = "book")
     private String name;
     private String author;
     private int cover;

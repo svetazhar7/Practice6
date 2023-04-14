@@ -17,6 +17,7 @@ import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -65,6 +66,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         binding.editText.setText(sharedPreferences.getString("name"));
         String text  = binding.editText.getText().toString();
         String fileName = "userName.txt";
@@ -167,11 +169,10 @@ public class ProfileFragment extends Fragment {
         Context context = getContext();
         try (FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE)) {
             fos.write(text.getBytes());
-           Toast.makeText(context, "Был создан текстовый файл в app-specific storage  " + context.getDataDir().getAbsolutePath()+"/" + fileName, Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+            //  Toast.makeText(context, "Был создан текстовый файл в app-specific storage  "
+            //       + context.getDataDir().getAbsolutePath()+"/"
+            //       + fileName, Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {throw new RuntimeException(e);}
     }
 
     void createFileExternalStorage(String fileName, String text) {
@@ -183,7 +184,7 @@ public class ProfileFragment extends Fragment {
             try {
                 outputStream = new FileOutputStream(file);
                 outputStream.write(text.getBytes());
-                // Toast.makeText(context, "Был создан текстовый файл в общем хранилище " + filePath + fileName, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Был создан текстовый файл в общем хранилище " + filePath +"/"+ fileName, Toast.LENGTH_SHORT).show();
                 outputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();

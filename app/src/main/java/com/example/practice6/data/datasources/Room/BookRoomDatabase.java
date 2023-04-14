@@ -27,9 +27,8 @@ public abstract class BookRoomDatabase extends RoomDatabase {
             synchronized (BookRoomDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            BookRoomDatabase.class, "book_database").addCallback(sRoomDatabaseCallback).build();
-                }
-            }
+                            BookRoomDatabase.class, "book_database")
+                            .addCallback(sRoomDatabaseCallback).build();}}
         }
         return INSTANCE;
     }

@@ -28,7 +28,8 @@ public abstract class AuthorRoomDatabase extends RoomDatabase {
             synchronized (AuthorRoomDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    AuthorRoomDatabase.class, "author_database").addCallback(sRoomDatabaseCallback).build();
+                                    AuthorRoomDatabase.class, "author_database")
+                            .addCallback(sRoomDatabaseCallback).build();
                 }
             }
         }
@@ -49,6 +50,5 @@ public abstract class AuthorRoomDatabase extends RoomDatabase {
             });
         }
     };
-
 }
 

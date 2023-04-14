@@ -4,7 +4,6 @@ import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.practice6.data.models.Book;
 import com.example.practice6.data.models.Entity.BookEntity;
@@ -26,6 +25,6 @@ public class BookListViewModel extends AndroidViewModel {
 
     public LiveData<List<Book>> getAllBooks() { return mAllBooks; }
 
-    public void insert(BookEntity book) { mRepository.createNewBookDao(book); }
+    public void insert(Book book) { mRepository.insert(new BookEntity(book.getName(), book.getName(), book.getImage())); }
 }
 

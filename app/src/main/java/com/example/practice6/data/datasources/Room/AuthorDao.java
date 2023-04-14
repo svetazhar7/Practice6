@@ -18,3 +18,4 @@ public interface AuthorDao {
     @Query("SELECT * FROM author_table ORDER BY id")
     LiveData<List<AuthorEntity>> getAllAuthors();
 }
+
