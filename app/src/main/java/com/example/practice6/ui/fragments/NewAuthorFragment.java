@@ -13,8 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.practice6.R;
-import com.example.practice6.data.models.Entity.AuthorEntity;
-import com.example.practice6.data.repository.AuthorRepository;
 import com.example.practice6.databinding.NewAuthorFragmentBinding;
 
 public class NewAuthorFragment extends Fragment {

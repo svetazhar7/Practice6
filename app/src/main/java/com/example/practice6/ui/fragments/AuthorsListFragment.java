@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.practice6.data.models.Author;
-import com.example.practice6.data.models.Entity.AuthorEntity;
 import com.example.practice6.ui.adapters.MyCustomAuthorListAdapter;
 import com.example.practice6.R;
 

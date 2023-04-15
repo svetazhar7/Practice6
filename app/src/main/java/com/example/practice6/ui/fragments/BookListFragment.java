@@ -15,8 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.practice6.data.models.Book;
-import com.example.practice6.data.models.Entity.AuthorEntity;
-import com.example.practice6.data.models.Entity.BookEntity;
 import com.example.practice6.ui.adapters.MyCustomListAdapter;
 import com.example.practice6.R;
 import com.example.practice6.databinding.BookListBinding;

@@ -5,10 +5,10 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 
-import com.example.practice6.data.datasources.Room.AuthorDao;
-import com.example.practice6.data.datasources.Room.AuthorRoomDatabase;
+import com.example.practice6.data.database.dao.AuthorDao;
+import com.example.practice6.data.database.RoomDatabase.AuthorRoomDatabase;
 import com.example.practice6.data.models.Author;
-import com.example.practice6.data.models.Entity.AuthorEntity;
+import com.example.practice6.data.database.Entity.AuthorEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;

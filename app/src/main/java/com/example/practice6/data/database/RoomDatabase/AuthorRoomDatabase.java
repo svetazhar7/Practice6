@@ -1,4 +1,4 @@
-package com.example.practice6.data.datasources.Room;
+package com.example.practice6.data.database.RoomDatabase;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
@@ -10,7 +10,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.practice6.R;
 
-import com.example.practice6.data.models.Entity.AuthorEntity;
+import com.example.practice6.data.database.dao.AuthorDao;
+import com.example.practice6.data.database.Entity.AuthorEntity;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

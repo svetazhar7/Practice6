@@ -6,7 +6,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.practice6.data.models.Book;
-import com.example.practice6.data.models.Entity.BookEntity;
+import com.example.practice6.data.database.Entity.BookEntity;
 import com.example.practice6.data.repository.BookRepository;
 
 

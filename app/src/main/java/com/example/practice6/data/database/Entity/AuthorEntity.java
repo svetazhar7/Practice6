@@ -1,4 +1,4 @@
-package com.example.practice6.data.models.Entity;
+package com.example.practice6.data.database.Entity;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

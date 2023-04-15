@@ -1,4 +1,4 @@
-package com.example.practice6.data.datasources.Room;
+package com.example.practice6.data.database.dao;
 
 import java.util.List;
 import androidx.lifecycle.LiveData;
@@ -7,7 +7,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.practice6.data.models.Entity.AuthorEntity;
+import com.example.practice6.data.database.Entity.AuthorEntity;
 
 @Dao
 public interface AuthorDao {

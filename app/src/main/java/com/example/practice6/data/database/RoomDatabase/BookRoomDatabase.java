@@ -1,4 +1,4 @@
-package com.example.practice6.data.datasources.Room;
+package com.example.practice6.data.database.RoomDatabase;
 
 import android.content.Context;
 
@@ -9,7 +9,8 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.practice6.R;
-import com.example.practice6.data.models.Entity.BookEntity;
+import com.example.practice6.data.database.dao.BookDao;
+import com.example.practice6.data.database.Entity.BookEntity;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
