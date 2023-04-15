@@ -8,6 +8,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -29,7 +30,6 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import com.example.practice6.data.repository.SharedPreferencesRepository;
 import com.example.practice6.databinding.Screen1Binding;
 import com.example.practice6.ui.activities.MainActivity;
 import com.example.practice6.R;
@@ -42,10 +42,8 @@ import java.io.IOException;
 
 public class ProfileFragment extends Fragment {
     Screen1Binding binding;
-    SharedPreferencesRepository sharedPreferences;
-    float rating_book1;
-    float rating_book2;
     private static final String CHANNEL_ID = "my_channel";
+    SharedPreferences sharedPreferences;
     private static final int PERMISSION_REQUEST_CODE = 1;
     private static final int NOTIFICATION_ID = 1;
 
@@ -59,7 +57,6 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = Screen1Binding.inflate(inflater, container, false);
-        sharedPreferences = new SharedPreferencesRepository(getContext());
         return binding.getRoot();
     }
 
@@ -67,7 +64,11 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.editText.setText(sharedPreferences.getString("name"));
+        sharedPreferences = getActivity().getSharedPreferences("name",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        binding.editText.setText(sharedPreferences.getString("name",null));
+
         String text  = binding.editText.getText().toString();
         String fileName = "userName.txt";
 
@@ -92,7 +93,8 @@ public class ProfileFragment extends Fragment {
         binding.saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sharedPreferences.setString("name", binding.editText.getText().toString());
+                editor.putString("name", binding.editText.getText().toString());
+                editor.apply();
             }
         });
         // Создаем канал уведомлений (для Android 8.0 и выше)

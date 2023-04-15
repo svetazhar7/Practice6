@@ -41,7 +41,7 @@ public class AuthorsListFragment extends Fragment{
             myCustomListAdapter = new MyCustomAuthorListAdapter();// создание адаптера
             Bundle args = getArguments();
             if (args != null && args.containsKey("RESULT_OK_NAME") && args.containsKey("RESULT_OK_IMG")) {
-                Author author = new Author(args.getString("RESULT_OK_NAME"),args.getInt("RESULT_OK_IMG"));
+                Author author = new Author(args.getString("RESULT_OK_NAME"), args.getInt("RESULT_OK_IMG"));
                 authorListViewModel.insert(author);
             }
             if (args != null && args.containsKey("Favorite"))

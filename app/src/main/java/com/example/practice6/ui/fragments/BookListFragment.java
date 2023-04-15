@@ -40,7 +40,7 @@ public class BookListFragment extends Fragment {
         myCustomListAdapter = new MyCustomListAdapter();// создание адаптера
         Bundle args = getArguments();
         if (args != null && args.containsKey("RESULT_OK_NAME") && args.containsKey("RESULT_OK_IMG")&& args.containsKey("RESULT_OK_AUTHOR")) {
-            Book author = new Book(args.getString("RESULT_OK_NAME"),args.getString("RESULT_OK_AUTHOR"),args.getInt("RESULT_OK_IMG"));
+            Book author = new Book(args.getString("RESULT_OK_NAME"), args.getString("RESULT_OK_AUTHOR"),args.getInt("RESULT_OK_IMG"));
             bookListViewModel.insert(author);
         }
         if (args != null && args.containsKey("Rating"))
